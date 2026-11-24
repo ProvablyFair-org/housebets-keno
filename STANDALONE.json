@@ -1,0 +1,35 @@
+{
+  "generator": "scripts/build-standalone.mjs",
+  "bundler": "bun 1.3.9",
+  "entry": "tests/verify.ts",
+  "sources": {
+    "src/artifact-pins.ts": "b29d711042b77520334f7190ec4c1a04c95d609973c693484ad17635d92837c2",
+    "src/diff.ts": "fda843439711f2e14b219ad8a38c1f8856fc27b3766a9046f31daf42d9183481",
+    "src/exhibits.ts": "41fd3d48bfbccef1fa3c905ac40065979d56a79442744b8bd565dd8861302a1e",
+    "src/false-alarm-pass2.ts": "8b31a2e1fcfcf8a4d65d2d9215ba1616e357440b20a4d15740d604db7d783350",
+    "src/false-alarm-tiles.ts": "8d55c4b9284b970be9d0f1bb1d69c7a7a4bb08f84d1620423016306131db8136",
+    "src/false-alarm.ts": "a14130b2fa6904924ed2d19b3426f3dac293fad4563385923381dde1781f72ce",
+    "src/loader.ts": "7d56864efc4722894c9731594aa88da944ca5c9e1f60e52b9870a816a9180118",
+    "src/pilot.ts": "316d21bed65ba2cf76b91bfbb2b6063e272754710ba4cf0eef0fedac2c35cc35",
+    "src/profile-map.ts": "a90652990ef4626ae53758174efc07dfc09577fbca7835d10522dfefac742149",
+    "src/rng.ts": "1cd76967ec3faaf414394acfdf685bc85636bd71e39254822118e355616e838a",
+    "src/rtp-claim-switch.ts": "3f3f6518b266f77904a284727563f54e0bb5d592f3c19ac2d5bba972011530cf",
+    "src/rtp-claim.ts": "cf9117d8c23401a64698080335e7b1c99392b6bdbce0fe0a962685fca829a93c",
+    "src/rtp-settings.ts": "9f728b57f2f60d4c876de6efa6d9f60bff2583764c7b5bc0da5fa4fe60b58b87",
+    "src/rules.ts": "b5b6123d754bb8f45a5166c2bdfdd457e90b16802aaeb80cda0f8526e914f005",
+    "src/sim-config.ts": "e8f5251f32e1148dfee85dcc691ccc94471119b5a3b955c0429d8dabd3dd9ff8",
+    "src/simulate.ts": "589de96586be6c97bf1fb1bdeda8556316f7bc7e560e0aa2d7461f0f892b6893",
+    "src/site-verifier.ts": "08e98006399ad1b480b9fcc96e532faeada382538983205459864299025a0c44",
+    "src/spec.ts": "8f53cd5528c17349c8ea7b480f91370654661909e2b68418134832254b93bdb5",
+    "src/split.ts": "3eeaafd15f3933ec41a59f94cb6d2a54e185b41af23089ca39322784243548a3",
+    "src/stats.ts": "6f9a7bea4a373bdb7c40abac006e17ef088fc1c1342e0f6b2687924f45e57cb9",
+    "src/types.ts": "64be36b34b5378b67f360802ca2376934da5b837174ff5108fa74149f21d8e89",
+    "src/xoshiro.ts": "37a4e22cedd7947d9342c5a9d3d010f024663519658c77ff742edee33ab7e4ea",
+    "tests/verify.ts": "cc2e904b7ee7de58bba17844c00bf3b3c02f8058517118db9928865fbffe31fb",
+    "scripts/fingerprint.mjs": "0a7d824c48e180c695b1afff4f8d044b225a8382b7139b5ad231267cebf5b20d"
+  },
+  "body": "db069f365cf995bbbbed2b61f2cb6dfc1cdf677fc6c85cce9756da853ff2aec5",
+  "output": {
+    "verify.js": "333b84f8eaa21fb56c6e82339913014fb557ab6ba25469597fd641ade4a8d366"
+  }
+}

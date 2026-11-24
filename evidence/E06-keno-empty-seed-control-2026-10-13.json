@@ -1,0 +1,38 @@
+{
+  "exhibit": "E06",
+  "what": "Phase D empty-seed control: the server's answer to POST /change_seed {clientSeed: \"\"}",
+  "source": {
+    "file": "data/supplementary/housebets-keno2-phaseD-200bets.json",
+    "sha256": "81d019879bd07cd0d100d849127f0247605375acd214ea1081679e32c5fda8f0",
+    "field": "meta.emptySeedControl"
+  },
+  "record": {
+    "at": "2026-10-13T11:58:10.815Z",
+    "request": {
+      "method": "POST",
+      "path": "/change_seed",
+      "body": {
+        "gameType": "keno2",
+        "clientSeed": ""
+      }
+    },
+    "seedsBeforeReadAt": "2026-10-13T11:58:11.479Z",
+    "seedsBefore": {
+      "clientSeed": "pfkeno793973a684227ef2f801d375d2bc99f2",
+      "hashedServerSeed": "daa3b6b5cf320f8a701ef88b19df2042fc8886ac6fb2eacf6c7d1a1de07b4997",
+      "hashedNextServerSeed": "c12af56be41b5d65bc5c79d11ceac8366e3a4d95f91e694eb782687f43c27f52",
+      "lastSeed": "",
+      "nonce": 0,
+      "totalBets": 0,
+      "cursor": 0,
+      "id": 102995
+    },
+    "answeredAt": "2026-10-13T11:58:11.726Z",
+    "status": 400,
+    "outcome": "refused",
+    "body": {
+      "error": "an error occurred"
+    },
+    "message": "POST /change_seed 400: {\"error\":\"an error occurred\"}"
+  }
+}

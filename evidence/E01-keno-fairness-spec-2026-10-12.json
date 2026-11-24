@@ -1,0 +1,1132 @@
+{
+  "exhibit": "E01",
+  "what": "HouseBets House Games keno: the server's published fairness spec (GET /housegames/keno2/fairness)",
+  "source": {
+    "file": "data/as-captured/housebets-keno2-sp1-6678bets.json",
+    "sha256": "0cd3d3d46e62e28ba9b3b23d31851cbedc7f6e3ce9ea80019b2ced082f548c6e",
+    "field": "meta.preflight.fairness"
+  },
+  "answer": {
+    "path": "/keno2/fairness",
+    "at": "2026-10-12T17:07:28.498Z",
+    "body": {
+      "version": "canonical",
+      "derivation": "block_i = HMAC_SHA256(key = serverSeed, message = clientSeed:nonce:i). Ball i of a round (i = 0 … 9) is bytes 4i..4i+3 of block_0 ‖ block_1 read as a big-endian number u; it is the number at position floor(u × (40 − i) / 2^32) among the numbers not yet drawn, kept in ascending order — the same as floor(float × (40 − i)) with float = Σ byte_j / 256^(j+1), the derivation public Keno calculators use for 40 numbers and 10 draws.",
+      "tiles": "Numbers are the tiles 0 to 39 from left to right, top to bottom, shown as 1 to 40.",
+      "rules": [
+        "pick 1 to 10 numbers and a risk (classic, low, medium or high) before the bet; the ten numbers drawn are fixed by the seed pair and the nonce at the bet",
+        "ten different numbers are drawn; the bet pays by how many of the picks are among them, from the paytable of the risk and the number of picks",
+        "a payout is the stake × the multiplier, rounded down to the wallet's smallest unit (1e-8) once",
+        "a stake whose top prize (every pick drawn) would pay more than the max win above it is refused before the draw",
+        "the round settles in the request that places it: there is no round to leave open"
+      ],
+      "return": "99% at every risk and every number of picks, to within one millionth: each paytable is solved so that Σ P(hits) × multiplier is at most 99/100 and at least 99/100 − 1e-6, with P(hits) hypergeometric on 40 numbers and 10 drawn",
+      "paytables": {
+        "classic": [
+          {
+            "picks": 1,
+            "micro": [
+              0,
+              3960000
+            ],
+            "multipliers": [
+              0,
+              3.96
+            ],
+            "rtp": "99/100",
+            "rtpFloat": 0.99
+          },
+          {
+            "picks": 2,
+            "micro": [
+              0,
+              1899000,
+              4500000
+            ],
+            "multipliers": [
+              0,
+              1.899,
+              4.5
+            ],
+            "rtp": "99/100",
+            "rtpFloat": 0.99
+          },
+          {
+            "picks": 3,
+            "micro": [
+              0,
+              999586,
+              3100000,
+              10400000
+            ],
+            "multipliers": [
+              0,
+              0.999586,
+              3.1,
+              10.4
+            ],
+            "rtp": "97811991/98800000",
+            "rtpFloat": 0.9899999089068826
+          },
+          {
+            "picks": 4,
+            "micro": [
+              0,
+              800000,
+              1800000,
+              5000000,
+              22671904
+            ],
+            "multipliers": [
+              0,
+              0.8,
+              1.8,
+              5,
+              22.671904
+            ],
+            "rtp": "141368906/142796875",
+            "rtpFloat": 0.9899999982492614
+          },
+          {
+            "picks": 5,
+            "micro": [
+              0,
+              250000,
+              1400000,
+              4100003,
+              16500000,
+              36370000
+            ],
+            "multipliers": [
+              0,
+              0.25,
+              1.4,
+              4.100003,
+              16.5,
+              36.37
+            ],
+            "rtp": "27838799/28120000",
+            "rtpFloat": 0.9899999644381223
+          },
+          {
+            "picks": 6,
+            "micro": [
+              0,
+              0,
+              1001042,
+              3680000,
+              7000000,
+              16500000,
+              40000000
+            ],
+            "multipliers": [
+              0,
+              0,
+              1.001042,
+              3.68,
+              7,
+              16.5,
+              40
+            ],
+            "rtp": "190475991/192400000",
+            "rtpFloat": 0.9899999532224533
+          },
+          {
+            "picks": 7,
+            "micro": [
+              0,
+              0,
+              470536,
+              3000000,
+              4500000,
+              14000000,
+              31000000,
+              60000000
+            ],
+            "multipliers": [
+              0,
+              0,
+              0.470536,
+              3,
+              4.5,
+              14,
+              31,
+              60
+            ],
+            "rtp": "76904663103/77681500000",
+            "rtpFloat": 0.9899997181182135
+          },
+          {
+            "picks": 8,
+            "micro": [
+              0,
+              0,
+              0,
+              2198973,
+              4000000,
+              13000000,
+              22000000,
+              55000000,
+              70000000
+            ],
+            "multipliers": [
+              0,
+              0,
+              0,
+              2.198973,
+              4,
+              13,
+              22,
+              55,
+              70
+            ],
+            "rtp": "739468061/746937500",
+            "rtpFloat": 0.9899999143167936
+          },
+          {
+            "picks": 9,
+            "micro": [
+              0,
+              0,
+              0,
+              1550946,
+              3000000,
+              8000000,
+              15000000,
+              44000000,
+              60000000,
+              85000000
+            ],
+            "multipliers": [
+              0,
+              0,
+              0,
+              1.550946,
+              3,
+              8,
+              15,
+              44,
+              60,
+              85
+            ],
+            "rtp": "135352232669/136719440000",
+            "rtpFloat": 0.9899999054194487
+          },
+          {
+            "picks": 10,
+            "micro": [
+              0,
+              0,
+              0,
+              1398703,
+              2250000,
+              4500000,
+              8000000,
+              17000000,
+              50000000,
+              80000000,
+              100000000
+            ],
+            "multipliers": [
+              0,
+              0,
+              0,
+              1.398703,
+              2.25,
+              4.5,
+              8,
+              17,
+              50,
+              80,
+              100
+            ],
+            "rtp": "209795922397/211915132000",
+            "rtpFloat": 0.9899997249700885
+          }
+        ],
+        "high": [
+          {
+            "picks": 1,
+            "micro": [
+              0,
+              3960000
+            ],
+            "multipliers": [
+              0,
+              3.96
+            ],
+            "rtp": "99/100",
+            "rtpFloat": 0.99
+          },
+          {
+            "picks": 2,
+            "micro": [
+              0,
+              0,
+              17160000
+            ],
+            "multipliers": [
+              0,
+              0,
+              17.16
+            ],
+            "rtp": "99/100",
+            "rtpFloat": 0.99
+          },
+          {
+            "picks": 3,
+            "micro": [
+              0,
+              0,
+              0,
+              81510000
+            ],
+            "multipliers": [
+              0,
+              0,
+              0,
+              81.51
+            ],
+            "rtp": "99/100",
+            "rtpFloat": 0.99
+          },
+          {
+            "picks": 4,
+            "micro": [
+              0,
+              0,
+              0,
+              10000000,
+              259410000
+            ],
+            "multipliers": [
+              0,
+              0,
+              0,
+              10,
+              259.41
+            ],
+            "rtp": "99/100",
+            "rtpFloat": 0.99
+          },
+          {
+            "picks": 5,
+            "micro": [
+              0,
+              0,
+              0,
+              4499993,
+              48000000,
+              452890000
+            ],
+            "multipliers": [
+              0,
+              0,
+              0,
+              4.499993,
+              48,
+              452.89
+            ],
+            "rtp": "361904397/365560000",
+            "rtpFloat": 0.9899999917934128
+          },
+          {
+            "picks": 6,
+            "micro": [
+              0,
+              0,
+              0,
+              0,
+              10793609,
+              350000000,
+              800000000
+            ],
+            "multipliers": [
+              0,
+              0,
+              0,
+              0,
+              10.793609,
+              350,
+              800
+            ],
+            "rtp": "3619043983/3655600000",
+            "rtpFloat": 0.9899999953496006
+          },
+          {
+            "picks": 7,
+            "micro": [
+              0,
+              0,
+              0,
+              0,
+              7200000,
+              88290498,
+              400000000,
+              1000000000
+            ],
+            "multipliers": [
+              0,
+              0,
+              0,
+              0,
+              7.2,
+              88.290498,
+              400,
+              1000
+            ],
+            "rtp": "153809369923/155363000000",
+            "rtpFloat": 0.9899999995043866
+          },
+          {
+            "picks": 8,
+            "micro": [
+              0,
+              0,
+              0,
+              0,
+              5003386,
+              20000000,
+              270000000,
+              600000000,
+              1200000000
+            ],
+            "multipliers": [
+              0,
+              0,
+              0,
+              0,
+              5.003386,
+              20,
+              270,
+              600,
+              1200
+            ],
+            "rtp": "84595151777/85449650000",
+            "rtpFloat": 0.9899999798360789
+          },
+          {
+            "picks": 9,
+            "micro": [
+              0,
+              0,
+              0,
+              0,
+              4003080,
+              11000000,
+              56000000,
+              500000000,
+              800000000,
+              1500000000
+            ],
+            "multipliers": [
+              0,
+              0,
+              0,
+              0,
+              4.00308,
+              11,
+              56,
+              500,
+              800,
+              1500
+            ],
+            "rtp": "19904740653/20105800000",
+            "rtpFloat": 0.9899999330044067
+          },
+          {
+            "picks": 10,
+            "micro": [
+              0,
+              0,
+              0,
+              0,
+              3499426,
+              8000000,
+              13000000,
+              63000000,
+              500000000,
+              800000000,
+              2000000000
+            ],
+            "multipliers": [
+              0,
+              0,
+              0,
+              0,
+              3.499426,
+              8,
+              13,
+              63,
+              500,
+              800,
+              2000
+            ],
+            "rtp": "1678367794723/1695321056000",
+            "rtpFloat": 0.9899999700841325
+          }
+        ],
+        "low": [
+          {
+            "picks": 1,
+            "micro": [
+              700000,
+              1860000
+            ],
+            "multipliers": [
+              0.7,
+              1.86
+            ],
+            "rtp": "99/100",
+            "rtpFloat": 0.99
+          },
+          {
+            "picks": 2,
+            "micro": [
+              0,
+              2000001,
+              3826660
+            ],
+            "multipliers": [
+              0,
+              2.000001,
+              3.82666
+            ],
+            "rtp": "99/100",
+            "rtpFloat": 0.99
+          },
+          {
+            "picks": 3,
+            "micro": [
+              0,
+              1100000,
+              1380000,
+              26110000
+            ],
+            "multipliers": [
+              0,
+              1.1,
+              1.38,
+              26.11
+            ],
+            "rtp": "99/100",
+            "rtpFloat": 0.99
+          },
+          {
+            "picks": 4,
+            "micro": [
+              0,
+              0,
+              2199984,
+              7900000,
+              90340000
+            ],
+            "multipliers": [
+              0,
+              0,
+              2.199984,
+              7.9,
+              90.34
+            ],
+            "rtp": "226190217/228475000",
+            "rtpFloat": 0.9899998555640661
+          },
+          {
+            "picks": 5,
+            "micro": [
+              0,
+              0,
+              1500000,
+              4200006,
+              13000000,
+              302530000
+            ],
+            "multipliers": [
+              0,
+              0,
+              1.5,
+              4.200006,
+              13,
+              302.53
+            ],
+            "rtp": "13919399/14060000",
+            "rtpFloat": 0.9899999288762447
+          },
+          {
+            "picks": 6,
+            "micro": [
+              0,
+              0,
+              1099739,
+              2000000,
+              6200000,
+              100000000,
+              700000000
+            ],
+            "multipliers": [
+              0,
+              0,
+              1.099739,
+              2,
+              6.2,
+              100,
+              700
+            ],
+            "rtp": "7238086911/7311200000",
+            "rtpFloat": 0.9899998510504432
+          },
+          {
+            "picks": 7,
+            "micro": [
+              0,
+              0,
+              1101780,
+              1600000,
+              3500000,
+              15000000,
+              225000000,
+              700000000
+            ],
+            "multipliers": [
+              0,
+              0,
+              1.10178,
+              1.6,
+              3.5,
+              15,
+              225,
+              700
+            ],
+            "rtp": "30761869551/31072600000",
+            "rtpFloat": 0.9899998568191912
+          },
+          {
+            "picks": 8,
+            "micro": [
+              0,
+              0,
+              1099879,
+              1500000,
+              2000000,
+              5500000,
+              39000000,
+              100000000,
+              800000000
+            ],
+            "multipliers": [
+              0,
+              0,
+              1.099879,
+              1.5,
+              2,
+              5.5,
+              39,
+              100,
+              800
+            ],
+            "rtp": "67676106129/68359720000",
+            "rtpFloat": 0.9899997561283165
+          },
+          {
+            "picks": 9,
+            "micro": [
+              0,
+              0,
+              1097944,
+              1300000,
+              1700000,
+              2500000,
+              7500000,
+              50000000,
+              250000000,
+              1000000000
+            ],
+            "multipliers": [
+              0,
+              0,
+              1.097944,
+              1.3,
+              1.7,
+              2.5,
+              7.5,
+              50,
+              250,
+              1000
+            ],
+            "rtp": "33838054973/34179860000",
+            "rtpFloat": 0.9899998119652919
+          },
+          {
+            "picks": 10,
+            "micro": [
+              0,
+              0,
+              1107732,
+              1200000,
+              1300000,
+              1800000,
+              3500000,
+              13000000,
+              50000000,
+              250000000,
+              1000000000
+            ],
+            "multipliers": [
+              0,
+              0,
+              1.107732,
+              1.2,
+              1.3,
+              1.8,
+              3.5,
+              13,
+              50,
+              250,
+              1000
+            ],
+            "rtp": "1678367551649/1695321056000",
+            "rtpFloat": 0.9899998267048009
+          }
+        ],
+        "medium": [
+          {
+            "picks": 1,
+            "micro": [
+              400000,
+              2760000
+            ],
+            "multipliers": [
+              0.4,
+              2.76
+            ],
+            "rtp": "99/100",
+            "rtpFloat": 0.99
+          },
+          {
+            "picks": 2,
+            "micro": [
+              0,
+              1800000,
+              5160000
+            ],
+            "multipliers": [
+              0,
+              1.8,
+              5.16
+            ],
+            "rtp": "99/100",
+            "rtpFloat": 0.99
+          },
+          {
+            "picks": 3,
+            "micro": [
+              0,
+              0,
+              2800000,
+              50010000
+            ],
+            "multipliers": [
+              0,
+              0,
+              2.8,
+              50.01
+            ],
+            "rtp": "99/100",
+            "rtpFloat": 0.99
+          },
+          {
+            "picks": 4,
+            "micro": [
+              0,
+              0,
+              1700000,
+              9999750,
+              100950000
+            ],
+            "multipliers": [
+              0,
+              0,
+              1.7,
+              9.99975,
+              100.95
+            ],
+            "rtp": "99/100",
+            "rtpFloat": 0.99
+          },
+          {
+            "picks": 5,
+            "micro": [
+              0,
+              0,
+              1400000,
+              4000000,
+              14000000,
+              391460000
+            ],
+            "multipliers": [
+              0,
+              0,
+              1.4,
+              4,
+              14,
+              391.46
+            ],
+            "rtp": "99/100",
+            "rtpFloat": 0.99
+          },
+          {
+            "picks": 6,
+            "micro": [
+              0,
+              0,
+              0,
+              3000000,
+              9000000,
+              180000000,
+              740220000
+            ],
+            "multipliers": [
+              0,
+              0,
+              0,
+              3,
+              9,
+              180,
+              740.22
+            ],
+            "rtp": "99/100",
+            "rtpFloat": 0.99
+          },
+          {
+            "picks": 7,
+            "micro": [
+              0,
+              0,
+              0,
+              2000000,
+              7000000,
+              30000000,
+              400000000,
+              859370000
+            ],
+            "multipliers": [
+              0,
+              0,
+              0,
+              2,
+              7,
+              30,
+              400,
+              859.37
+            ],
+            "rtp": "99/100",
+            "rtpFloat": 0.99
+          },
+          {
+            "picks": 8,
+            "micro": [
+              0,
+              0,
+              0,
+              2003434,
+              4000000,
+              11000000,
+              67000000,
+              400000000,
+              900000000
+            ],
+            "multipliers": [
+              0,
+              0,
+              0,
+              2.003434,
+              4,
+              11,
+              67,
+              400,
+              900
+            ],
+            "rtp": "4067074459/4108156250",
+            "rtpFloat": 0.9899999443789412
+          },
+          {
+            "picks": 9,
+            "micro": [
+              0,
+              0,
+              0,
+              2002225,
+              2500000,
+              5000000,
+              15000000,
+              100000000,
+              500000000,
+              1000000000
+            ],
+            "multipliers": [
+              0,
+              0,
+              0,
+              2.002225,
+              2.5,
+              5,
+              15,
+              100,
+              500,
+              1000
+            ],
+            "rtp": "10828179517/10937555200",
+            "rtpFloat": 0.9899999880229176
+          },
+          {
+            "picks": 10,
+            "micro": [
+              0,
+              0,
+              0,
+              1600891,
+              2000000,
+              4000000,
+              7000000,
+              26000000,
+              100000000,
+              500000000,
+              1000000000
+            ],
+            "multipliers": [
+              0,
+              0,
+              0,
+              1.600891,
+              2,
+              4,
+              7,
+              26,
+              100,
+              500,
+              1000
+            ],
+            "rtp": "6170469601/6232798000",
+            "rtpFloat": 0.9899999327749752
+          }
+        ]
+      },
+      "hitChance": {
+        "1": [
+          0.75,
+          0.25
+        ],
+        "2": [
+          0.5576923076923077,
+          0.38461538461538464,
+          0.057692307692307696
+        ],
+        "3": [
+          0.4109311740890688,
+          0.4402834008097166,
+          0.13663967611336034,
+          0.012145748987854251
+        ],
+        "4": [
+          0.2998686946055367,
+          0.44424991793412844,
+          0.2141919247182405,
+          0.03939161833898676,
+          0.002297844403107561
+        ],
+        "5": [
+          0.21657183499288762,
+          0.41648429806324544,
+          0.2776561987088303,
+          0.07933034248823723,
+          0.009574351679614837,
+          0.0003829740671845935
+        ],
+        "6": [
+          0.15469416785206258,
+          0.3712660028449502,
+          0.3212878870773608,
+          0.12692854798117956,
+          0.02379910274647117,
+          0.001969580916949338,
+          5.47105810263705e-05
+        ],
+        "7": [
+          0.10919588318969124,
+          0.31848799263659944,
+          0.3439670320475274,
+          0.17639334976796278,
+          0.04573160919910146,
+          0.005879778325598759,
+          0.0003379182945746413,
+          6.436538944278882e-06
+        ],
+        "8": [
+          0.07610622161705753,
+          0.2647172925810697,
+          0.34744144651265396,
+          0.22236252576809853,
+          0.07483354232580239,
+          0.013303740857920425,
+          0.0011878340051714666,
+          4.681119232202823e-05,
+          5.851399040253529e-07
+        ],
+        "9": [
+          0.05232302736172705,
+          0.2140487482979743,
+          0.3350328234229163,
+          0.26058108488449044,
+          0.10944405565148599,
+          0.025256320534958306,
+          0.0031180642635750995,
+          0.0001909018936882714,
+          4.937117940213916e-06,
+          3.6571244001584556e-08
+        ],
+        "10": [
+          0.035444631438589294,
+          0.1687839592313776,
+          0.3107159249486724,
+          0.28820027821326133,
+          0.1471022253380188,
+          0.042365440897349414,
+          0.00678933347713933,
+          0.0005747583895990967,
+          2.309297101067799e-05,
+          3.5391526453146347e-07,
+          1.1797175484382116e-09
+        ]
+      },
+      "examples": [
+        {
+          "serverSeed": "housebets-demo-server-seed-0001",
+          "clientSeed": "demo-client",
+          "nonce": 1,
+          "balls": [
+            28,
+            7,
+            15,
+            11,
+            22,
+            3,
+            8,
+            38,
+            0,
+            34
+          ]
+        },
+        {
+          "serverSeed": "housebets-demo-server-seed-0001",
+          "clientSeed": "demo-client",
+          "nonce": 2,
+          "balls": [
+            32,
+            34,
+            38,
+            36,
+            15,
+            25,
+            13,
+            2,
+            35,
+            20
+          ]
+        },
+        {
+          "serverSeed": "5a1f7d2c9e4b8a3f6d0c2b5e8f1a4d7c0b3e6f9a2d5c8b1e4f7a0d3c6b9e2f5a",
+          "clientSeed": "housebets",
+          "nonce": 1,
+          "balls": [
+            25,
+            10,
+            8,
+            18,
+            22,
+            28,
+            23,
+            37,
+            27,
+            38
+          ]
+        },
+        {
+          "serverSeed": "5a1f7d2c9e4b8a3f6d0c2b5e8f1a4d7c0b3e6f9a2d5c8b1e4f7a0d3c6b9e2f5a",
+          "clientSeed": "housebets",
+          "nonce": 7,
+          "balls": [
+            38,
+            32,
+            6,
+            15,
+            18,
+            9,
+            31,
+            13,
+            39,
+            1
+          ]
+        }
+      ],
+      "payouts": [
+        {
+          "risk": "classic",
+          "picks": 1,
+          "hits": 1,
+          "multiplier": 3.96,
+          "payout": 3.96
+        },
+        {
+          "risk": "classic",
+          "picks": 3,
+          "hits": 1,
+          "multiplier": 0.999586,
+          "payout": 0.999586
+        },
+        {
+          "risk": "classic",
+          "picks": 10,
+          "hits": 10,
+          "multiplier": 100,
+          "payout": 100
+        },
+        {
+          "risk": "low",
+          "picks": 1,
+          "hits": 0,
+          "multiplier": 0.7,
+          "payout": 0.7
+        },
+        {
+          "risk": "low",
+          "picks": 10,
+          "hits": 2,
+          "multiplier": 1.107732,
+          "payout": 1.107732
+        },
+        {
+          "risk": "medium",
+          "picks": 5,
+          "hits": 5,
+          "multiplier": 391.46,
+          "payout": 391.46
+        },
+        {
+          "risk": "high",
+          "picks": 10,
+          "hits": 10,
+          "multiplier": 2000,
+          "payout": 2000
+        },
+        {
+          "risk": "high",
+          "picks": 4,
+          "hits": 3,
+          "multiplier": 10,
+          "payout": 10
+        }
+      ],
+      "summary": "block_i = HMAC_SHA256(key = serverSeed, message = clientSeed:nonce:i). Ball i of a round (i = 0 … 9) is bytes 4i..4i+3 of block_0 ‖ block_1 read as a big-endian number u; it is the number at position floor(u × (40 − i) / 2^32) among the numbers not yet drawn, kept in ascending order — the same as floor(float × (40 − i)) with float = Σ byte_j / 256^(j+1), the derivation public Keno calculators use for 40 numbers and 10 draws. Numbers are the tiles 0 to 39 from left to right, top to bottom, shown as 1 to 40. The game returns 99% at every risk and every number of picks, to within one millionth: each paytable is solved so that Σ P(hits) × multiplier is at most 99/100 and at least 99/100 − 1e-6, with P(hits) hypergeometric on 40 numbers and 10 drawn. The server seed is committed up front by its SHA-256 hash and revealed when you rotate the pair, so every draw is fixed before the bet and can be checked afterwards."
+    }
+  }
+}

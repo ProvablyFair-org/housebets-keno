@@ -1,0 +1,31 @@
+{
+  "exhibit": "E02",
+  "what": "HouseBets keno game page: the rules panel text (English) as shipped in the bundle the live page loads",
+  "source": {
+    "file": "bundles/platform-housegames-keno2-game.js (HouseBets workshop)",
+    "sha256": "7afa2e0bf9f0ac99df20f9f67c836044764f6a1390ca79ec2445661574089329",
+    "bytes": 845642,
+    "checkedOnLivePage": "2026-10-10 (bundles/LIVE-BUNDLES.md)"
+  },
+  "rulesPanelEnglish": {
+    "rulesTabRules": "Rules",
+    "rulesTabFair": "Fairness",
+    "rulesBoardH": "The board",
+    "rulesBoard": "40 numbers. Pick 1 to {max} of them and a risk; ten numbers are drawn, none twice.",
+    "rulesDrawH": "The draw",
+    "rulesDraw": "The ten numbers are fixed by the seed pair and the nonce at the bet, and shown in the order they are drawn.",
+    "rulesPayH": "Payouts",
+    "rulesPay": "The bet pays by how many of your numbers are drawn, from the paytable of the risk and the number of picks. A payout is the stake × the multiplier, rounded down to the smallest unit once.",
+    "rulesReturn": "Every paytable returns 99% to the player (to one millionth), at every risk and every number of picks.",
+    "rulesMaxWin": "A stake whose top prize would pay more than the max win is refused before the draw.",
+    "rulesLimitsH": "Limits",
+    "rulesBetRange": "Bet from {min} to {max}",
+    "rulesMaxWinLine": "Max win per round: {cap}",
+    "rulesPaytableH": "Paytables",
+    "rulesPicksHead": "Picks",
+    "rulesHitsHead": "Hits",
+    "rulesReturnLine": "Every row of this table returns 99% to the player.",
+    "rulesFair": "The server seed is committed by its hash before you bet and revealed when you rotate the pair, so every draw can be checked afterwards — here or in a public Keno calculator.",
+    "rulesOpenFair": "Open Provably Fair"
+  }
+}

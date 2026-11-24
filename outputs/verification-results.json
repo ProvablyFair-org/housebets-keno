@@ -1,0 +1,192 @@
+{
+  "suite": "housebets-keno",
+  "profileSha256": "aee3e8e3b581622e6fbb93142cf90e7fd9c4ebf3b0fe3c77e7cd7353ce0740a8",
+  "verdict": "PROVABLY FAIR — Full Pass",
+  "summary": {
+    "passes": 22,
+    "fails": 0,
+    "overstated": 0,
+    "operatorFlags": 0,
+    "captureFlags": 1,
+    "packageChecks": 5,
+    "excluded": [
+      "KENO-27"
+    ]
+  },
+  "steps": [
+    {
+      "id": "KENO-01",
+      "status": "PASS",
+      "origin": null,
+      "detail": "sha256(utf8(revealed)) == committed: 133/133 Phase A seeds, 146/146 across Phase A, tail, C, C $10 and D; 0 unverifiable bets"
+    },
+    {
+      "id": "KENO-02",
+      "status": "PASS",
+      "origin": null,
+      "detail": "Phase A 132/132 links, pre-capture anchor true, Phase A → tail link true, tail → pair active after the capture true; C 3/3 anchor true, C $10 3/3 anchor true, D 3/3 anchor true; the capture's own times for the 142 CSPRNG client seeds (printed, not scored, P-1): drawn in the same millisecond as the hash read on 134, a later millisecond on 8, earlier on 0, so the read-then-draw order rests on the rig's code order"
+    },
+    {
+      "id": "KENO-03",
+      "status": "PASS",
+      "origin": null,
+      "detail": "133/133 epochs: every bet's copied server-seed hash and client seed are its epoch's; the server's own answer (_raw.game.fairness.hashedServerSeed, .clientSeed) == the copy == the epoch's on 7278/7278 bets of Phase A, tail, C, C $10 and D"
+    },
+    {
+      "id": "KENO-04",
+      "status": "PASS",
+      "origin": null,
+      "detail": "133/133 epochs: nonces exactly 1..50, once each, no gap, repeat or reorder, and N == the server's nonce read at rotation; the tail pair (DL-1): 1..28 and N == 28: true; the supplementary epochs the same way: C 4/4, C $10 4/4, D 4/4; the nonce the recomputation uses == the server's own answer (_raw.game.fairness.nonce) on 7278/7278 bets of every dataset"
+    },
+    {
+      "id": "KENO-05",
+      "status": "PASS",
+      "origin": null,
+      "detail": "Phase A 6650 bets / 133 seeds / 133 epochs, every epoch 50: true; tail 28 (own file, disclosed DL-1); supplementary C 200, C $10 200, D 200, every supplementary epoch 50: true; the 7278 round ids of the five files all distinct: true — against src/loader.ts constants, never meta; the split re-run from the as-captured file reproduces both files byte for byte"
+    },
+    {
+      "id": "KENO-06",
+      "status": "PASS",
+      "origin": null,
+      "detail": "a wrong client seed changes the drawn balls on 6650/6650 bets (the model: another seed repeats the ordered 10-ball draw with probability 1 / (40!/30!) = 1/3075990524006400 per bet, so none is expected); Phase D: player-set seeds [\"provablyfair-1\",\"provablyfair-2\",\"player-seed-abc\",\"1234567890\"] (predictable, disclosed DL-2, all 4 epochs exposed), 200/200 draws, 200/200 hits and 200/200 payouts recompute, 0 of 200 draws equal under the previous client seed; phases A–C client seeds from node:crypto randomBytes(16) (CSPRNG) on 142/142 seeds; empty-seed control: server refused, HTTP 400 (E06)"
+    },
+    {
+      "id": "KENO-07",
+      "status": "PASS",
+      "origin": null,
+      "detail": "the ten balls == spec derivation (E01: HMAC-SHA256(serverSeed, clientSeed:nonce:i), u_i = bytes 4i..4i+3 of block_0 ‖ block_1, ball i = position floor(u_i·(40 − i)/2^32) among the tiles not yet drawn, ascending) IN DRAW ORDER 6650/6650, compared with the bet's copy and the server's game answer; answer seeds == epoch seeds 6650/6650; coverage 6650 == expectedBets; the tail's own file (DL-1): balls 28/28, hits 28/28, cells 28/28, payouts 28/28, copies == server record 28/28"
+    },
+    {
+      "id": "KENO-08",
+      "status": "PASS",
+      "origin": null,
+      "detail": "count of src/rng.ts indexFromU over the 2^32 values of u, taken from the two ends of each outcome's interval (given by the formula and checked through the function; the values between the ends are not enumerated, so the count is exact for a map that is monotone in u) for each of the 10 ranges the draw uses (index into the 40 … 31 tiles not yet drawn): values per index 40: 107374182/107374183, 39: 110127366/110127367, 38: 113025455/113025456, 37: 116080197/116080198, 36: 119304647/119304648, 35: 122713351/122713352, 34: 126322567/126322568, 33: 130150524/130150525, 32: 134217728, 31: 138547332/138547333; each range sums to 2^32: true; boundaries re-checked through the function: true; worst |P(index) − 1/range| = 2.0696e-10 ≤ 2^-32 = 2.3283e-10 (no modulo, no rejection)"
+    },
+    {
+      "id": "KENO-09",
+      "status": "PASS",
+      "origin": null,
+      "detail": "the 4 worked draws of HouseBets' published spec (E01 examples, in draw order) 4/4; the 8 published settlements of a stake of 1 (E01 payouts) 8/8; src/spec.ts vectors == E01: true; captured bet idx 5 (medium, picks [0], 0 hits, paid 0.00400124) recomputes: true; also tests/rng.test.ts"
+    },
+    {
+      "id": "KENO-10",
+      "status": "PASS",
+      "origin": null,
+      "detail": "served balls are 10 different tiles of 0..39 (from the served record alone) 6650/6650 and equal the recomputed draw 6650/6650; picks legal (1–10 different tiles of 0..39) with a published risk 6650/6650; the answer echoes the picks and risk sent 6650/6650; hits = |picks ∩ recomputed balls| == the served hits 6650/6650 — computed, the served field only compared"
+    },
+    {
+      "id": "KENO-11",
+      "status": "PASS",
+      "origin": null,
+      "detail": "payout == floor(stake × recomputed cell / 10^6) at 1e-8 (E01 rules[2], \"rounded down … once\") in the bet, the server's game answer and its round record 6650/6650; stake copies (request, bet, game, round) agree 6650/6650; served multiplier == cell / 10^6 6650/6650; capture copy == the server's own round record (roundId, payout) 6650/6650; 2597 paying bets (2093 above the stake, 504 below it), 4053 at 0; every money value and multiplier (stake, payout, multiplier, round stake/payout/delta, balances, in the server's answer and the copies) on the 1e-8 grid, an off-grid value a FAIL: 116430/116430 values across Phase A, tail, C, C $10 and D"
+    },
+    {
+      "id": "KENO-12",
+      "status": "PASS",
+      "origin": null,
+      "detail": "Phase C config recomputed from the paytable: low, 1 pick (P(non-zero payout) = 1) == the one played: true; Phase C 200 bets at 1.000311 (= 100 × E03 minimum 0.01000311: true): draws 200/200, hits 200/200, cells 200/200, payouts 200/200, as sent and answered true, 200 paying (≥ 100); $10 set 200 bets at 10: draws 200/200, cells 200/200, payouts 200/200, as sent and answered true, 200 paying (≥ 100); same paytable cell and rounding rule as base stake"
+    },
+    {
+      "id": "KENO-13",
+      "status": "PASS",
+      "origin": null,
+      "detail": "src/spec.ts paytable == the server's published table (E01 paytables, micro and multipliers) 40/40 rows, == the game page's own table (E07, the bundle's Af) 40/40 rows, cell for cell; the served cell == the declared cell at the recomputed hits on 7278/7278 bets of every dataset, covering 40/40 served (risk, picks) rows; the derivation reads no operator multiplier, hit or probability field (E01 hitChance is only compared, -18); no cell pays exactly 1× (the served outcome word follows the cell: 0 lose, < 1× partial, > 1× win): true"
+    },
+    {
+      "id": "KENO-14",
+      "status": "PASS",
+      "origin": null,
+      "detail": "every stake within the declared 0.01000311 … 20006.20192259 (E03): 7278/7278; the top multiplier is 2000× (high/10); the max-win clip is declared (E01 rules[3], E02 rulesMaxWin) and binds above a stake of about 500.41 on high/10 (max win 1000310.0961298 ÷ 1999); the largest top-prize win above the stake of any captured bet is 19.99621689, below the max win; the capture's 22 refused requests are all the transient \"Transaction temporarily unavailable\" (DL-1): true; non-monotone cells: 2 consolation payouts on 0 hits (low/1 0 hits 0.7×, medium/1 0 hits 0.4×), 0 decreasing steps; 6 cells pay less than the stake (0 < multiplier < 1, a \"partial\" result); the refusal branch binds below the max stake 20006.20192259 (reachable within the bet limits: true) and the capture produced it 0 times (largest captured stake 10, DL-7) — the clip is declared and the branch is declared unwitnessed (DL-7); the rule asks for the declaration, not a witness, so PASS"
+    },
+    {
+      "id": "KENO-15",
+      "status": "PASS",
+      "origin": null,
+      "detail": "the Phase A plan was trimmed from 6720 to 6700 entries at 2026-10-12T17:19:23.494Z with 585 bets already placed, by dropping its last entries before they were played (as-captured meta.planTruncated); 6678 were placed and 22 refused (DL-1); Phase A bets per (risk, picks) configuration (src/rules.ts CONFIGS, floor 50): 40/40 present, min 163, max 168; the 40 plan classes (src/loader.ts PLAN_CLASSES) are exactly the ones played: true; all 40 tiles drawn: true; paytable cells reached in live play 192/260; share of a configuration's theoretical RTP carried by never-reached cells: mean 12.74 %, worst 74.05 % (high/6); the likeliest never-reached cell is medium/3 at 3 hits (P = 1.21e-2 per bet, about 2.02 expected in this configuration's Phase A bets) — printed; a cell's payout rule is the paytable (-13)"
+    },
+    {
+      "id": "KENO-16",
+      "status": "PASS",
+      "origin": null,
+      "detail": "every keno round of the package is in the platform's bet history with the same stake, payout and won/lost status, each row matched once: 7278/7278 (E04, 7278 rows, 7278 distinct ids); the account reconciliation (E05, the full output of the workshop's reconcile-full.py), its numbers re-added here: 60 captured datasets of 11 games, paid − staked == net on 60/60 rows, TOTAL (86966 rounds, staked 28096.76845689, paid 28024.11851634, net -72.64994055) == the sum of the rows: true; 86979 ledger entries = 86966 captured rounds matched exactly + 0 open + 13 bets from 10 Oct, matched == TOTAL rounds, unexplained 0: true; the after-balance 914.19723945 is the server's 8-dp read after the capture and the before-balance 986.84718000 is DERIVED from it (after − net + open stakes, == at 1e-8: true), not read; the last game answer's 4-dp balance 914.1972 == the after-balance at 4 dp: true; the first answer's balance follows the day's first bet and is not compared; RECONCILED: true; this package's 4 datasets (as-captured Phase A + tail, C, C $10, D) give the rounds, stake and paid E05 prints for them, summed here from the datasets at 1e-8: 4/4; E05 lists 5 keno datasets, 7758 rounds: this package's 4 (7278 rounds) and, not shipped, housebets-keno2-sp1-480bets.json (480 rounds, the 12 Oct first capture, recomputed by npm run pilot); the per-bet balance field is not used: between consecutive as-captured answers (Phase A and tail) the balance moved by something other than the keno bet's own net on 6579 of 6677 (4 dp), because other games' captures ran on the same account at the same time (DL-8)"
+    },
+    {
+      "id": "KENO-17",
+      "status": "PASS",
+      "origin": null,
+      "detail": "the declared RNG message is \"clientSeed:nonce:i\" and src/rng.ts ballsOf takes (serverSeed, clientSeed, nonce) only — no pick, risk or stake field: true; every Phase A bet recomputes with its picks excluded from the derivation 6650/6650; 133/133 epochs whose bets carried different picks and risks draw by the one function"
+    },
+    {
+      "id": "KENO-18",
+      "status": "PASS",
+      "origin": null,
+      "detail": "P(k hits | n picks) = C(n,k)·C(40−n,10−k)/C(40,10), exact BigInt: for every n = 1 … 10, Σ_k P = 1, the mean = n·10/40, and the other counting C(10,k)·C(30,n−k)/C(40,n) gives the same fractions: 10/10; the operator's E01 hitChance field is compared, never used: worst |Δ| 0.0e+0; negative controls: one count added to P(2 | 5) breaks Σ = 1 (true), one micro added to classic/5 at 3 hits no longer equals E01's exact RTP for that row while the true table does (true)"
+    },
+    {
+      "id": "KENO-19",
+      "status": "PASS",
+      "origin": null,
+      "detail": "40 configurations: exact RTP Σ_k P(k)·cell from 98.999972 % (classic, 7 picks) to 99.000000 % (classic, 1 pick), spread 2.82e-5 pp; vs the per-configuration claim read from the exhibits at run time — the flat 0.99 of E01 \"return\" (GET /housegames/keno2/fairness) \"99% at every risk and every number of picks\" (0.99); E02 rulesReturn (game page rules panel) \"Every paytable returns 99% to the player (to one millionth)\" (0.99); E02 rulesReturnLine (game page rules panel) \"Every row of this table returns 99% to the player.\" (0.99); E08 rulesReturn (game page rules panel, live copy of 19 Oct) \"Theoretical RTP is approximately 99% before payout rounding; table precision can differ by up to one millionth.\" (0.99); E08 rulesReturnLine (game page rules panel, live copy of 19 Oct) \"Theoretical RTP is approximately 99% before payout rounding; table precision can differ by up to one millionth.\" (0.99) (the places agree), or E01's own row figure where higher (none is): 0 house-side beyond the 0.1 pp band → RTP-CLAIM PASS (rule 1.2.0, enforced true: PASS); information, not scored here: every configuration == the exact fraction E01 publishes for its row 40/40, inside E01's own stated band [99/100 − 1e-6, 99/100] 40/40; the per-configuration table is outputs/rtp-claim-table.json, regenerated == committed: true"
+    },
+    {
+      "id": "KENO-20",
+      "status": "PASS",
+      "origin": null,
+      "detail": "census re-run in full == the pinned outputs/simulation-results.json byte for byte: true; 10 streams (one per pick count, each on its own seeds: true) × 1,000,000 fresh rounds = 10,000,000 rounds, every round on a random pick set, the four risk levels of a pick count settled on its stream (floor 1,000,000 per configuration); on all 10,000,000 rounds: tile chi² 28.25 (df 39; Pearson X² 21.73 × 1.3000, the without-replacement correction (K − 1)/(K(1 − q))) p 0.8988, first-ball lag-1 r 6.49e-6 z 0.021 p 0.9836, runs (first ball ≥ 20) z 0.255 p 0.7988 (each ≥ α/3 = 0.0033: true); every tile count in 2493153..2506847 (5σ + 1): true; hit histogram vs the hypergeometric law, every cell in its 5σ + 1 band: 65/65 (worst 2.67σ, 2 picks, 2 hits: 58315 vs 57692.3); RTP convergence from the histogram, printed: worst 2.67 SE (high/2 100.069 % vs 99.0000 %), all within 5 SE: true; bands: tile count T/4 ± (5σ + 1) = 2493153..2506847 over the T = 10,000,000 rounds (half-width 6847.0, 0.274 % of T/4); each hit cell N·P(k | n) ± (5σ + 1) on its stream's N = 1,000,000 rounds; the printed RTP bands ±5·SE (SE = σ_config/√N) run from 0.251 pp (low/1) to 8.338 pp (high/6), 23 of 40 wider than the 1 pp house edge (those configurations' RTP bands cannot see an edge of that size from this sample; the scored form is the hit histogram); false-alarm rates: tile screen α/3 = 0.0033 under the χ²(39) law, measured 0.00339 ± 0.00013 (mean statistic 38.99 vs 39) by src/false-alarm-tiles.ts over 200,000 replicates of 2,000 rounds, serial screens 0.0059, tile bands ≤ 2.3e-5, hit cells ≤ 7.7e-4"
+    },
+    {
+      "id": "KENO-21",
+      "status": "PASS",
+      "origin": null,
+      "detail": "every revealed seed: 146 epochs (A 133, tail 1, C 4, C10 4, D 4; 146/146 bound to their dataset's seed, captured nonces and window sizes) × 10,000 nonces (early = the captured nonce range: 1..50 on 145 epochs, 1..28 on the tail epoch; reference = the rest of 1..10000), each slot replaying the bet played at that position (its risk and picks); scored statistic (src/sim-config.ts): the standardized early-window return of the 7278 played bets, z -1.693, one-sided p 0.0452 (≥ 0.01: true); the Phase A seeds alone (the population before the widening, printed): z -1.423, p 0.0774 over 6650 bets; the 13 seeds the widening added (tail, C, C $10, D) alone: z -1.133 over 628 bets (printed); 91 epochs below expectation, 55 at or above; reference window z -0.233; the raw return (printed, not scored) early z -1.399, reference z -1.914; early window == the captured bets' served cells per configuration, every shipped bet: true; detection power at 80 % for a uniform per-bet RTP deficit: 6.77 pp standardized (raw return: 21.46 pp; standardized on one risk alone: classic 12.3 pp, low 7.4 pp, medium 20.0 pp, high 43.5 pp — disclosed DL-4); false-alarm rate 0.00622 ± 0.000176 (src/false-alarm-pass2.ts, the same 7278 bets, ≤ 0.01)"
+    },
+    {
+      "id": "KENO-22",
+      "status": "INFO",
+      "origin": null,
+      "detail": "6650 captured draws: tile chi² 43.06 (df 39; Pearson X² 33.12 × 1.3000, the without-replacement correction) p 0.3018; first-ball lag-1 r 0.00401; runs z -1.048 p 0.2947; hits 9165 vs 9152.5 expected; Phase A observed return 59.62628271 paid / 66.52068150 staked = 89.6357 % (variance, not RTP evidence) — informational (a live sample has little power and never bears the verdict)"
+    },
+    {
+      "id": "KENO-23",
+      "status": "PASS",
+      "origin": null,
+      "detail": "MANIFEST.md fairness-integrity matrix (the block between the S5-MATRIX markers): 8 rows; the vendored profile's KENO-23 rule names S5-1 … S5-8: true, without the names, so they are the framework matrix's (S5_NAMES); rows S5-1 … S5-8 present once each, in order, under those names (replay protection, input validation, seed integrity under adversarial input, cross-player isolation, payout field integrity, nonce sequence enforcement, parameter boundary enforcement, game-specific state), each with a result (Pass / Flag / Hard Fail / Not tested) and what it is tied to: 8/8; results 4 Pass on every control the row names, 2 Pass on part of the controls it names, 2 Not tested; S5-n rows outside the block: 0"
+    },
+    {
+      "id": "KENO-24",
+      "status": "PASS",
+      "origin": null,
+      "detail": "site-verifier/derive.js (generated from src/rng.ts by scripts/build-site-verifier.mjs): sha256 d5256fbef8117a5174e92b7eac971966a18a2c64dcb9bcf2e0de59009352f6a9; == SITE_VERIFIER_PIN in src/artifact-pins.ts: true; == its RELEASE-MANIFEST.json pin: true; quoted in MANIFEST.md and README.md: true; the module loaded from that file exports what src/rng.ts exports (ballsOf, hmacBlock, indexFromU, sha256Hex): true; run side by side with src/rng.ts on every captured round of the 5 shipped datasets: 7278 rounds, 94760 calls (sha256Hex 146, hmacBlock 14556, ballsOf 7278, indexFromU 72780; 4/4 exports exercised), 0 differing results"
+    },
+    {
+      "id": "KENO-25",
+      "status": "PASS",
+      "origin": null,
+      "detail": "README.md \"Verify a bet\" carries where the seed is revealed, the fields, the commitment encoding and the draw formula: 5/5 markers"
+    },
+    {
+      "id": "KENO-26",
+      "status": "PASS",
+      "origin": null,
+      "detail": "6 datasets + 8 evidence exhibits match their sha256 pinned in src/loader.ts; the figures checks compare against, read from the exhibits: MIN_STAKE 0.01000311, MAX_STAKE 20006.20192259 and MAX_WIN 1000310.0961298 == E03 wallet minBet, maxBet, maxWin; SPEC_VECTORS and PAYOUT_EXAMPLES == E01; printed, not scored: E01 and E03 == the as-captured file's meta.preflight (fairness true, limits true); the published return parses from E01 \"return\" (GET /housegames/keno2/fairness) (0.99), E02 rulesReturn (game page rules panel) (0.99), E02 rulesReturnLine (game page rules panel) (0.99), E08 rulesReturn (game page rules panel, live copy of 19 Oct) (0.99), E08 rulesReturnLine (game page rules panel, live copy of 19 Oct) (0.99) and E01's 40 row figures: true"
+    },
+    {
+      "id": "KENO-30",
+      "status": "PASS",
+      "origin": null,
+      "detail": "MANIFEST.md: 12 declared-limitation rows; load-bearing premises with \"Could the data contradict it?\": true; every exhibit E01…E08 listed by file name: true"
+    },
+    {
+      "id": "KENO-31",
+      "status": "PASS",
+      "origin": null,
+      "detail": "no bet-size ladder: the server's fairness answer (E01) and limits answer (E03) carry no tier, ladder, scaling or edge field (0 found); every bet is priced by the one published table at every stake captured: 0.01000311: 6878/6878, 1.000311: 200/200, 10: 200/200"
+    },
+    {
+      "id": "KENO-32",
+      "status": "FLAG",
+      "origin": "capture",
+      "detail": "the game offers an auto-pick (E07: the bundle's $A draws a partial Fisher-Yates of the 40 tiles in the browser with crypto.getRandomValues and rejection sampling, falling back to Math.random only if crypto throws or 16 draws in a row are rejected); its result is sent as the same \"spots\" field a manual pick uses, so it enters the same draw function (-17) and paytable cell (-13); no captured bet used the control (the capture's picks are a CSPRNG plan, src/loader.ts PLAN_CLASSES), so auto-pick vs manual outcomes were not compared: a capture gap, disclosed DL-9, verdict-neutral"
+    }
+  ]
+}

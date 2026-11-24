@@ -1,0 +1,17 @@
+{
+  "codeSha256": "b9f3004cd3fbd66328796ddc42a2e313cc8c10b964392e7abcbec27ea05b591d",
+  "committedVerdict": "PROVABLY FAIR — Full Pass",
+  "expectedExit": 0,
+  "node": "22.23.1",
+  "rngTestsExit": 0,
+  "exit": 0,
+  "verdict": "PROVABLY FAIR — Full Pass",
+  "standaloneExit": 0,
+  "standaloneVerdict": "PROVABLY FAIR — Full Pass",
+  "reproduced": true,
+  "standaloneReproduced": true,
+  "simulateExit": 0,
+  "beyondTolerance": 0,
+  "pinnedUnchanged": true,
+  "changed": []
+}

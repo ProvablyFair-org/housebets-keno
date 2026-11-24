@@ -1,0 +1,72 @@
+{
+  "exhibit": "E08",
+  "what": "HouseBets keno game page: the rules panel text (English) as shipped in the bundle the live page URL served on 19 Oct 2026 (last-modified Fri, 16 Oct 2026 09:18:09 GMT, the same last-modified as the other ten House Games bundles fetched that day). E02 is the same panel in the 10 Oct copy, the bundle in force while this package's rounds were captured (12-13 Oct).",
+  "source": {
+    "file": "bundles/live-2026-10-19/platform-housegames-keno2-game.js (HouseBets workshop)",
+    "url": "/static/platform-housegames-keno2-game.js",
+    "sha256": "bdf4415a34c78c5b3aae465f0dd2006dabca5d095dc8bd218476793459d64255",
+    "bytes": 865911,
+    "lastModified": "Fri, 16 Oct 2026 09:18:09 GMT",
+    "etag": "W/\"d3677-1a144012868\"",
+    "fetchedAt": "Mon, 19 Oct 2026 13:01:22 GMT",
+    "contentType": "application/javascript; charset=UTF-8",
+    "loadedByLivePage": "not re-checked on 19 Oct; the same /static URL the live page loaded on 10 Oct (bundles/LIVE-BUNDLES.md)"
+  },
+  "previous": {
+    "exhibit": "E02",
+    "file": "evidence/E02-keno-rules-panel-2026-10-10.json",
+    "bundleSha256": "7afa2e0bf9f0ac99df20f9f67c836044764f6a1390ca79ec2445661574089329",
+    "bytes": 845642
+  },
+  "rulesPanelEnglish": {
+    "rulesTabRules": "Rules",
+    "rulesTabFair": "Fairness",
+    "rulesBoardH": "The board",
+    "rulesBoard": "40 numbers. Pick 1 to {max} of them and a risk; ten numbers are drawn, none twice.",
+    "rulesDrawH": "The draw",
+    "rulesDraw": "The ten numbers are fixed by the seed pair and the nonce at the bet, and shown in the order they are drawn.",
+    "rulesPayH": "Payouts",
+    "rulesPay": "The bet pays by how many of your numbers are drawn, from the paytable of the risk and the number of picks. A payout is the stake × the multiplier, rounded down to the smallest unit once.",
+    "rulesReturn": "Theoretical RTP is approximately 99% before payout rounding; table precision can differ by up to one millionth.",
+    "rulesMaxWin": "A stake whose top prize would pay more than the max win is refused before the draw.",
+    "rulesLimitsH": "Limits",
+    "rulesBetRange": "Bet from {min} to {max}",
+    "rulesMaxWinLine": "Max win per round: {cap}",
+    "rulesPaytableH": "Paytables",
+    "rulesPicksHead": "Picks",
+    "rulesHitsHead": "Hits",
+    "rulesReturnLine": "Theoretical RTP is approximately 99% before payout rounding; table precision can differ by up to one millionth.",
+    "rulesFair": "The server seed is committed by its hash before you bet and revealed when you rotate the pair, so every draw can be checked afterwards — here or in a public Keno calculator.",
+    "rulesOpenFair": "Open Provably Fair",
+    "rulesMaxBet": "Max bet",
+    "rulesMinBet": "Min bet"
+  },
+  "changedSinceE02": {
+    "rulesReturn": {
+      "E02 (10 Oct)": "Every paytable returns 99% to the player (to one millionth), at every risk and every number of picks.",
+      "E08 (19 Oct)": "Theoretical RTP is approximately 99% before payout rounding; table precision can differ by up to one millionth."
+    },
+    "rulesReturnLine": {
+      "E02 (10 Oct)": "Every row of this table returns 99% to the player.",
+      "E08 (19 Oct)": "Theoretical RTP is approximately 99% before payout rounding; table precision can differ by up to one millionth."
+    },
+    "rulesMaxBet": {
+      "E02 (10 Oct)": null,
+      "E08 (19 Oct)": "Max bet"
+    },
+    "rulesMinBet": {
+      "E02 (10 Oct)": null,
+      "E08 (19 Oct)": "Min bet"
+    }
+  },
+  "panelKeysCalled": {
+    "note": "rules keys the page code passes to its translator, (\"rulesX\" ...), in the 10 Oct copy vs the live copy",
+    "added": [
+      "rulesMaxBet",
+      "rulesMinBet"
+    ],
+    "removed": [
+      "rulesBetRange"
+    ]
+  }
+}
